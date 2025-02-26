@@ -52,8 +52,8 @@ void ABoids::Tick(float DeltaTime)
 	ApplySeparation();
 	ApplyObstacleAvoidance();
 	ApplyAlignment();
-	ApplyCohesion();
-	ApplyWander();
+	//ApplyCohesion();
+	//ApplyWander();
     
 	m_Velocity = m_Velocity.GetClampedToSize(m_MinSpeed, m_MaxSpeed);
 	AddActorWorldOffset(m_Velocity * DeltaTime);
@@ -108,10 +108,10 @@ void ABoids::ApplyObstacleAvoidance()
             Direction += AvoidanceVector.GetSafeNormal() * Ratio * m_AvoidanceWeight;
             ObstacleDetected = true;
             
-            if (GetWorld()->IsPlayInEditor())
+            /*if (GetWorld()->IsPlayInEditor())
             {
                 DrawDebugLine(GetWorld(), Start, HitResult.ImpactPoint, FColor::Red, false, -1.0f, 0, 2.0f);
-            }
+            }*/
         }
     }
     
@@ -137,7 +137,6 @@ void ABoids::ApplySeparation()
 		if (Distance > 0.0f && Distance < MaxDistance)
 		{
 			float Ratio = Distance / MaxDistance;
-            
 			Direction += SeparationVector * Ratio * m_SeparationWeight;
 		}
 	}
@@ -206,13 +205,13 @@ void ABoids::ApplyCohesion()
         m_Velocity = Direction * CurrentSpeed;
     }
     
-    if (GetWorld()->IsPlayInEditor())
+    /*if (GetWorld()->IsPlayInEditor())
     {
         DrawDebugLine(GetWorld(), GetActorLocation(), CenterOfMass, 
                       FColor::Blue, false, -1.0f, 0, 1.0f);
         DrawDebugSphere(GetWorld(), CenterOfMass, 10.0f, 8, 
                       FColor::Blue, false, -1.0f, 0, 1.0f);
-    }
+    }*/
 }
 
 void ABoids::ApplyWander()
@@ -241,12 +240,12 @@ void ABoids::ApplyWander()
         float CurrentSpeed = m_Velocity.Size();
         m_Velocity = Direction * CurrentSpeed;
         
-        if (GetWorld()->IsPlayInEditor())
+        /*if (GetWorld()->IsPlayInEditor())
         {
             DrawDebugLine(GetWorld(), GetActorLocation(), 
                           GetActorLocation() + WanderDirection * 50.0f, 
                           FColor::Yellow, false, 0.2f, 0, 1.0f);
-        }
+        }*/
     }
 }
 
@@ -385,11 +384,11 @@ FVector ABoids::CalculateObstacleAvoidance() const
             
             AvoidanceDirection += DifferenceVector.GetSafeNormal() * Ratio * Ratio;
             
-            if (GetWorld()->IsPlayInEditor())
+            /*if (GetWorld()->IsPlayInEditor())
             {
                 DrawDebugLine(GetWorld(), Start, HitResult.ImpactPoint, FColor::Red, false, -1.0f, 0, 2.0f);
                 DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 10.0f, 8, FColor::Orange, false, -1.0f, 0, 1.0f);
-            }
+            }*/
         }
     }
     
