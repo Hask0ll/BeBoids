@@ -7,7 +7,6 @@
 // Sets default values
 ABoidsManager::ABoidsManager()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 }
 
@@ -17,14 +16,14 @@ void ABoidsManager::BeginPlay()
 
 	if (!BoidClass)
 	{
-		UE_LOG(LogTemp, Error, TEXT("BoidClass n'est pas défini dans BoidsManager! Impossible de spawner des Boids."));
+		UE_LOG(LogTemp, Error, TEXT("BoidClass is not set in BoidsManager."));
 		return;
 	}
 
 	if (m_SpawnVolume.IsNearlyZero())
 	{
 		m_SpawnVolume = FVector(500.0f, 500.0f, 200.0f);
-		UE_LOG(LogTemp, Warning, TEXT("Volume de spawn initialisé à la valeur par défaut (500,500,200)."));
+		UE_LOG(LogTemp, Warning, TEXT("Spawn volume initialyse at value : (500,500,200)."));
 	}
 
 	for (int i = 0; i < m_NumBoids; i++)
@@ -49,11 +48,11 @@ void ABoidsManager::BeginPlay()
 		}
 		else
 		{
-			UE_LOG(LogTemp, Error, TEXT("Échec du spawn d'un Boid à la position %s"), *Position.ToString());
+			UE_LOG(LogTemp, Error, TEXT("Spawn Boids error at location: %s"), *Position.ToString());
 		}
 	}
 
-	UE_LOG(LogTemp, Log, TEXT("Spawned %d Boids sur %d demandés"), SpawnedBoids.Num(), m_NumBoids);
+	UE_LOG(LogTemp, Log, TEXT("Spawned %d Boids on %d Given"), SpawnedBoids.Num(), m_NumBoids);
 }
 
 // Called every frame
