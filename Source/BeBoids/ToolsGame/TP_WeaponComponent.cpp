@@ -2,8 +2,8 @@
 
 
 #include "TP_WeaponComponent.h"
-#include "BeBoidsCharacter.h"
-#include "BeBoidsProjectile.h"
+#include "BeBoids/Character/BeBoidsCharacter.h"
+#include "BeBoids/ToolsGame/BeBoidsProjectile.h"
 #include "GameFramework/PlayerController.h"
 #include "Camera/PlayerCameraManager.h"
 #include "Kismet/GameplayStatics.h"

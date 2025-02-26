@@ -1,7 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "BeBoidsGameMode.h"
-#include "BeBoidsCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
 ABeBoidsGameMode::ABeBoidsGameMode()
