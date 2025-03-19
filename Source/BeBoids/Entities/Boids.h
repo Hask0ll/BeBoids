@@ -20,7 +20,7 @@ public:
 	ABoids();
 
 	// Mesh component for the boid
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category=Mesh)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Mesh)
 	UStaticMeshComponent* BoidsMesh;
 
 protected:
@@ -37,7 +37,7 @@ public:
 	TArray<ABoids*> Neighbors;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
-	float m_PerceptionRadius = 500.0f;
+	float m_PerceptionRadius = 400.0f;
     
 	void ApplySeparation();
 	void ApplyObstacleAvoidance();
@@ -46,12 +46,20 @@ public:
 	void BoidsMovement(float Deltatime);
     
 	FVector m_Velocity;
+	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	float MaxDistance = 100.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	float m_MaxSpeed = 600.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	float m_MinSpeed = 200.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	float m_AlignmentWeight = 1.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	float m_CohesionWeight = 5.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	float m_SeparationWeight = 5.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	float m_AvoidanceWeight = 5.0f;
     
 	UPROPERTY(BlueprintReadWrite, Category = "Boids")
