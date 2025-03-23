@@ -56,9 +56,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	float m_AlignmentWeight = 1.0f;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
-	float m_CohesionWeight = 5.0f;
+	float m_CohesionWeight = 20.0f;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
-	float m_SeparationWeight = 5.0f;
+	float m_SeparationWeight = 1.0f;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	float m_AvoidanceWeight = 5.0f;
     

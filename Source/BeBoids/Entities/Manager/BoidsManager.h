@@ -23,7 +23,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	TArray<ABoids*> SpawnedBoids;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
