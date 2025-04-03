@@ -26,23 +26,26 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	TArray<ABoids*> SpawnedBoids;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids", meta = (ExposeOnSpawn="true"))
 	int m_NumBoids = 100;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids", meta = (ExposeOnSpawn="true"))
 	FVector m_SpawnVolume;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids", meta = (ExposeOnSpawn="true"))
 	TSubclassOf<ABoids> BoidClass;
     
-	// Reference to the spatial grid manager
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	TSubclassOf<ASpatialGridManager> SpatialGridManagerClass;
     
 	UPROPERTY()
 	ASpatialGridManager* SpatialGridManager;
     
-	// Whether to use the spatial grid optimization
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	bool bUseSpatialGrid = true;
+
+private:
+
+	void SpawnBoids();
+	void SpawnSpatialGrid();
 };

@@ -10,10 +10,19 @@ void ABoidsManager::BeginPlay()
 {
     Super::BeginPlay();
 
-    // First, set up the spatial grid if we're using it
+    SpawnSpatialGrid();
+    SpawnBoids();
+}
+
+void ABoidsManager::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+}
+
+void ABoidsManager::SpawnSpatialGrid()
+{
     if (bUseSpatialGrid && SpatialGridManagerClass)
     {
-        // Spawn the spatial grid manager
         FActorSpawnParameters SpawnParams;
         SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
         SpatialGridManager = GetWorld()->SpawnActor<ASpatialGridManager>(SpatialGridManagerClass, GetActorLocation(), FRotator::ZeroRotator, SpawnParams);
@@ -24,19 +33,10 @@ void ABoidsManager::BeginPlay()
             bUseSpatialGrid = false;
         }
     }
+}
 
-    if (!BoidClass)
-    {
-        UE_LOG(LogTemp, Error, TEXT("BoidClass is not set in BoidsManager."));
-        return;
-    }
-
-    if (m_SpawnVolume.IsNearlyZero())
-    {
-        m_SpawnVolume = FVector(500.0f, 500.0f, 200.0f);
-        UE_LOG(LogTemp, Warning, TEXT("Spawn volume initialized at value: (500,500,200)."));
-    }
-
+void ABoidsManager::SpawnBoids()
+{
     for (int i = 0; i < m_NumBoids; i++)
     {
         FVector Position = GetActorLocation() + FVector(
@@ -54,16 +54,13 @@ void ABoidsManager::BeginPlay()
         {
             SpawnedBoids.Add(NewBoid);
             
-            // Set the use spatial grid flag
             NewBoid->bUseSpatialGrid = bUseSpatialGrid;
             
-            // Register with the spatial grid manager if we're using it
             if (bUseSpatialGrid && SpatialGridManager)
             {
                 SpatialGridManager->RegisterBoid(NewBoid);
             }
             
-            // Initialize with random velocity
             FVector RandomDir = FVector(
                 FMath::RandRange(-1.0f, 1.0f),
                 FMath::RandRange(-1.0f, 1.0f),
@@ -79,10 +76,4 @@ void ABoidsManager::BeginPlay()
     }
 
     UE_LOG(LogTemp, Log, TEXT("Spawned %d Boids out of %d requested"), SpawnedBoids.Num(), m_NumBoids);
-}
-
-// Called every frame
-void ABoidsManager::Tick(float DeltaTime)
-{
-    Super::Tick(DeltaTime);
 }

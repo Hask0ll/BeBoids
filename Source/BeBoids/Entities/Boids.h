@@ -36,7 +36,7 @@ public:
 	UPROPERTY()
 	TArray<ABoids*> Neighbors;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids", meta = (ExposeOnSpawn="true"))
 	float m_PerceptionRadius = 400.0f;
     
 	void ApplySeparation();
@@ -47,10 +47,10 @@ public:
     
 	FVector m_Velocity;
 	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids", meta = (ExposeOnSpawn="true"))
 	float MaxDistance = 100.0f;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
-	float m_MaxSpeed = 600.0f;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids", meta = (ExposeOnSpawn="true"))
+	float m_MaxSpeed = 300.0f;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
 	float m_MinSpeed = 200.0f;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Boids")
